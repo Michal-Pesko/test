@@ -1,0 +1,13 @@
+TTY discovery:
+sudo dmesg | grep tty
+sudo minicom -D /dev/ttyACM
+
+Kill openocd:
+sudo pkill openocd
+
+CANABLE v2 utils:
+sudo slcand -o -c -s6 /dev/ttyACM0 can0       <--- this sets up 500kb/s bitrate on can0
+sudo ifconfig can0 up
+sudo ifconfig can0 txqueuelen 1000
+candump can0 			// to view rx traffic
+cansend can0 999#DEADBEEF 	// send frame with 0xdeadbeef payload to 0x999 
